@@ -1,8 +1,18 @@
 #pragma once
+#include "Score.h"
+#include <algorithm>
+#include <list>
+#include <iostream>
+using namespace std;
 class HighScore
 {
 public:
-	HighScore();
+	HighScore(int lenght);
 	~HighScore();
+	void AddScore(string _name, int _score);
+	void ShowScores();
+private:
+	list<Score*>* scoreList;
+	int lenght;
 };
 
