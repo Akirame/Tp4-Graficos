@@ -1,6 +1,9 @@
 #include "HighScore.h"
 
-
+bool compareScore(const Score* s1, const Score* s2)
+{
+	return s1->GetScore() > s2->GetScore();
+}
 
 HighScore::HighScore(int _length)
 {
@@ -18,9 +21,9 @@ void HighScore::AddScore(string _name, int _score)
 {
 	Score* add = new Score(_name, _score);
 	scoreList->push_back(add);
-	scoreList->sort();
+	scoreList->sort(compareScore);
 
-	if (scoreList->size() >= lenght)
+	if (scoreList->size() > lenght)
 		scoreList->pop_back();
 }
 
@@ -31,12 +34,12 @@ void HighScore::ShowScores()
 	cout << "**************************************" << endl;
 
 	list<Score*>::iterator it;
-	int cont = 1;
+	int count = 1;
 	for (it = scoreList->begin(); it != scoreList->end(); it++)
 	{
 		Score* s = *it;
-		cout << "N° "<< cont << s->GetName().c_str() << "    " << s->GetScore();
-		cont++;
+		cout << "N- " << count << " " << s->GetName().c_str() << "    " << s->GetScore() << endl;
+		count++;
 	}
 
 	cout << "**************************************" << endl;
